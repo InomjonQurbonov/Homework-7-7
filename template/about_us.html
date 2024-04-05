@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	About Us
+{% endblock %}
+
+{% block content %}
+	 <div class="container-fluid p-5 bg-primary text-white text-center">
+        <h1>There our all members</h1>
+     </div>
+      <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Member Name</th>
+        <th>Member Join Us</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for member in members %}
+        <tr>
+            <td>{{ member.member_name }}</td>
+            <td>{{ member.member_added_date }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

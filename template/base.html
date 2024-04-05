@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'style/bg.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style/footer.css' %}">
+    <title>
+        {% block title %}
+            MainPage
+        {% endblock %}
+    </title>
+</head>
+<body>
+<div class="area" >
+<nav class="navbar navbar-expand-sm bg-light text-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% static 'logo.png' %}" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+            Birlashgan Millatlar Tashkiloti
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about_us' %}">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Our Works</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'news' %}">Events and News</a>
+                </li>
+            </ul>
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                        {{ user.username }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="https://www.unicef.org/">UNICEF</a></li>
+                        <li><a class="dropdown-item" href="https://www.unesco.org/">UNESCO</a></li>
+                        <li><a class="dropdown-item" href="{% url 'profile' user.pk %}">Account</a></li>
+                        {% if user.is_superuser %}
+                            <li class="text-white"><a class="dropdown-item" href="{% url 'superuser' %}">Send Message Users</a></li>
+                        {% endif %}
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                    </ul>
+            </div>
+            {% else %}
+                <button type="button" class="btn btn-success"><a href="{% url 'registration' %}" class="text-white">Register</a></button>
+                <button type="button" class="btn btn-info"><a href="{% url 'login' %}" class="text-white">Log In</a></button>
+            {% endif %}
+            <form class="d-flex">
+                <input class="form-control me-2" type="text" placeholder="Search">
+                <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+        </div>
+    </div>
+</nav>
+{% block content %}
+
+{% endblock %}
+<!-- Footer is here -->
+
+   <footer id="footer" >
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" alt="" class="img-fluid logo-footer"></a>
+                      <div class="footer-about">
+                          <p>
+                              The United Nations (UN) is an intergovernmental organization established on October 24, 1945, after World War II,
+                              to promote international cooperation and maintain peace and security among nations. Its headquarters is located in New York City, United States.
+                          </p>
+                      </div>
+
+					</div>
+					<div class="col-md-3">
+						<div class="useful-link">
+							<h2>Useful Links</h2>
+							<div class="use-links">
+								<li><a href="{% url 'home' %}"><i class="fa-solid fa-angles-right"></i> Home</a></li>
+								<li><a href="#"><i class="fa-solid fa-angles-right"></i> About Us</a></li>
+								<li><a href="https://www.bbc.com/usingthebbc/privacy/"><i class="fa-solid fa-angles-right"></i> Privacy Policy</a></li>
+								<li><a href="https://www.bbc.co.uk/usingthebbc/terms"><i class="fa-solid fa-angles-right"></i> Terms of Use</a></li>
+							</div>
+						</div>
+
+					</div>
+                    <div class="col-md-3">
+                        <div class="social-links">
+							<h2>Follow Us</h2>
+							<img src="#" alt="">
+							<div class="social-icons">
+								<li><a href="https://facebook.com"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+								<li><a href="https://instagram.com"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+								<li><a href="https://linkedin.com"><i class="fa-brands fa-linkedin-in"></i> Linkedin</a></li>
+							</div>
+						</div>
+
+
+                    </div>
+					<div class="col-md-3">
+						<div class="address">
+							<h2>Address</h2>
+							<img src="#" alt="" class="img-fluid">
+							<div class="address-links">
+								<li class="address1"><i class="fa-solid fa-location-dot"></i>2000 M St NW, Washington, DC 20036, United States of America</li>
+								   <li><a href=""><i class="fa-solid fa-phone"></i> +90 123456789</a></li>
+								   <li><a href=""><i class="fa-solid fa-envelope"></i> info@aurachronicle.com</a></li>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</footer>
+		<!-- footer section end -->
+		<!-- footer copy right section start -->
+		<section id="copy-right">
+			<div class="copy-right-sec"><i class="fa-solid fa-copyright"></i>
+				Breaking News from AuraChronicle || 2024 Powered By || <a href="https://github.com/InomjonQurbonov">Inomjon Qurbonov</a>
+
+
+			</div>
+
+		</section>
+<!-- Footer is end -->
+</div >
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

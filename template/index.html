@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	HomePage
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/card.css' %}">
+    <div class="container-fluid bg-light text-primary text-center">
+        <h1>Here only work Events and News Page</h1>
+        <p class="text-primary">Sorry, but other pages are linked to UN personal page</p>
+    </div>
+    <div class="row">
+    {% for new in news %}
+    	    <div class="col-sm-3 ">
+             <div class="card">
+              <p class="card-title">{{ new.news_title }}</p>
+              <p class="small-desc">
+                  {{ new.news_content }}
+              </p>
+              <div class="go-corner">
+                <div class="go-arrow"><a href="{% url 'about_news' new.pk %}" class="text-white">→</a></div>
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
