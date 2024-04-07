@@ -5,6 +5,7 @@ from django.db import models
 class Members(models.Model):
     member_name = models.CharField(max_length=255)
     member_added_date = models.IntegerField()
+    members_user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.member_name

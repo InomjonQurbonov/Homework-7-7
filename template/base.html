@@ -54,10 +54,10 @@
                 <button type="button" class="btn btn-success"><a href="{% url 'registration' %}" class="text-white">Register</a></button>
                 <button type="button" class="btn btn-info"><a href="{% url 'login' %}" class="text-white">Log In</a></button>
             {% endif %}
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search">
-                <button class="btn btn-primary" type="submit">Search</button>
-                </form>
+            <form class="d-flex" action="{% url 'news' %}" method="get">
+                <input class="form-control me-2" type="text" placeholder="Search" name="keyword">
+                <button class="btn btn-light" type="submit">Search</button>
+            </form>
         </div>
     </div>
 </nav>
